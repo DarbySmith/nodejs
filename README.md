@@ -39,7 +39,7 @@
 - do not use node for CPU intensive apps
     - node will have to wait for the calculations to finish so it isn't efficient
 
-## Installation
+## INSTALL
 - $ npm init -y
     - initializes the package.json
 - $ yarn add -D typescript
@@ -48,7 +48,7 @@
     - creates tsconfig.json file
     - stores options for TS compiler
 
-## Running 
+## RUNNING 
 - in package.json edit "scripts"
     ```json
     "scripts": {
@@ -73,6 +73,7 @@
         - helpful with importing functions and seeing what the types are for the args
 
 
+## TIPS
 - if want to add a package also add the types for it - for example
     - express
     - @types/express
