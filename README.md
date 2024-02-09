@@ -46,7 +46,7 @@
     - adds typescript to the project
 - $ npx tsc --init
     - creates tsconfig.json file
-    - stores options for compiler
+    - stores options for TS compiler
 
 ## Running 
 - in package.json edit "scripts"
@@ -64,3 +64,25 @@
 - $ yarn start
     - runs the script "start" in the package.json
     - when changes are made it will <strong style="color:red">transpile</strong> to JS
+- $ yarn add express
+    - JS library 
+- $ yarn add -D @types/express
+    - know what the values are (types) in 
+- $ yarn add -D @types/node
+    - give access to types definitions for node js packages
+        - helpful with importing functions and seeing what the types are for the args
+
+
+- if want to add a package also add the types for it - for example
+    - express
+    - @types/express
+- some JS libraries do not have types 
+    - there's no info for fxn that is imported
+    - create a dir `@types` and file `shortid.d.ts`
+    - `shortid.d.ts`
+    ```ts
+    // makes so TS will stop yelling at you about the import without types
+    declare module "shortid";
+    ```
+- trick for if your IDE is behind giving errors
+    - cmd + shift + p `Typescript restart server`
