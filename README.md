@@ -4,6 +4,9 @@
 
 ### What is it
 - <strong style="color:red">runtime environment</strong> for exectuting JavaScript code
+    - runtime environment is a JS engine that executes the JS code
+        - no document object in node
+        - does have fs and http objects though (not in browser)
 - Node is NOT a programming language or a framework
 
 ### Uses
@@ -36,8 +39,10 @@
 - async by default
 - while the thread is waiting for a result from the query it will go to another request
     - works in a queue where it is waiting for an event to finish
+        - node monitors the queue in the background
 - do not use node for CPU intensive apps
     - node will have to wait for the calculations to finish so it isn't efficient
+- DO use for data intensive and real time applications
 
 ## INSTALL
 - $ npm init -y
@@ -95,9 +100,11 @@
     - clearTimeout()
     - setInterval()
     - clearInterval()
-- there is no window object in node though - global in node
-    - global.setTimeout()
+- there is no window object in node though - global object in node
+    - global.setTimeout() // this is automatically prefixed with "global"
         - global is implied and can just write setTimeout()
+- avoid creating var and functions in the global scope
+    - create in modules (scoped to module)
 
 ## MODULES
 - when define functions it is added to the global scope
@@ -106,8 +113,27 @@
         - since they are in global scope
 - use a module to scope functions and variables
     - encapsulated inside the module
+- you can import modules into different files
 - every file is a module in node
     - everything in the file is scoped to the file
     - private to the file
     - in order to use a function in another file it must be imported
 - every app has a main module
+- node modules:
+    - os
+    - fs
+    - events
+    - http
+
+### Creating new module
+- add new file
+- write code 
+- module.exports.`<export name>` = `<function name>`
+    ```js
+    module.exports.log = log;
+    ```
+- load into another file
+    - require(`<path of target module>`)
+    ```js
+    require('./logger');
+    ```
