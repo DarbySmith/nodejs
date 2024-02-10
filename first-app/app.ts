@@ -1,6 +1,8 @@
-function sayHello(name: string): string {
-    console.log('hello' + name)
-    return name.toUpperCase()
-}
+console.log(module)
 
-sayHello("Darby")
+// function sayHello(name: string): string {
+//     console.log('hello' + name)
+//     return name.toUpperCase()
+// }
+
+// sayHello("Darby")

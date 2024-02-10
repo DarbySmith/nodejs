@@ -87,3 +87,27 @@
     ```
 - trick for if your IDE is behind giving errors
     - cmd + shift + p `Typescript restart server`
+
+
+## GLOBAL OBJECTS
+- these all belong to the window object
+    - setTimeout()
+    - clearTimeout()
+    - setInterval()
+    - clearInterval()
+- there is no window object in node though - global in node
+    - global.setTimeout()
+        - global is implied and can just write setTimeout()
+
+## MODULES
+- when define functions it is added to the global scope
+    - accessible by window object 
+    - if you have another file with the same function name you can override a function in another file
+        - since they are in global scope
+- use a module to scope functions and variables
+    - encapsulated inside the module
+- every file is a module in node
+    - everything in the file is scoped to the file
+    - private to the file
+    - in order to use a function in another file it must be imported
+- every app has a main module
