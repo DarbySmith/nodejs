@@ -137,3 +137,11 @@
     ```js
     require('./logger');
     ```
+
+### Module wrapper function
+- the code in file is wrapped inside of a function at runtime
+    ```js
+    (function (exports, require, module, __filename, __dirname) {
+        // code in file
+    })
+    ```

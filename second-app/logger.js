@@ -1,3 +1,8 @@
+// module wrapper function
+// (function (exports, require, module, __filename, __dirname) {
+
+console.log(__filename);
+console.log(__dirname);
 
 var url = 'http://mylogger.io/log';
 
@@ -14,3 +19,4 @@ module.exports.log = log;
 
 // can change the name of the import function to endPoint
 module.exports.endPoint = url;
+// })
