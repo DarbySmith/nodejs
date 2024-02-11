@@ -1,22 +1,23 @@
-// module wrapper function
-// (function (exports, require, module, __filename, __dirname) {
 
-console.log(__filename);
-console.log(__dirname);
+const EventEmitter = require('events');
 
-var url = 'http://mylogger.io/log';
-
-function log(message) {
-    //send http request
-    console.log(message);
+class Logger extends EventEmitter {
+    // don't need function keyword for methods inside class
+    log(message) {
+        //send http request
+        console.log(message);
+        this.emit('messageLogged', {id: 1, url: 'http://'});
+    }
 }
 
+module.exports = Logger;
+
 // only want to export the subset of functions needed outside the module
-module.exports.log = log;
+// module.exports.log = log;
 
 // ANOTHER OPTION - exports an object 
 // module.exports = log;
 
 // can change the name of the import function to endPoint
-module.exports.endPoint = url;
+// module.exports.endPoint = url;
 // })

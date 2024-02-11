@@ -145,3 +145,123 @@
         // code in file
     })
     ```
+
+### Path module
+```js
+const path = require("path")
+
+var pathObject = path.parse(__filename);
+
+console.log(pathObject)
+// ==> {
+//     root: '/',
+//     dir: '/Users/darbysmith/Desktop/nodejs/second-app',
+//     base: 'app.js',
+//     ext: '.js',
+//     name: 'app'
+//   }
+```
+
+### OS module
+- operating system module
+```js
+const os = require('os')
+
+var totalMemory = os.totalmem();
+var freeMemory = os.freemem;
+```
+
+### filesystem (fs) module
+- working with files in node
+- comes with synchronous and async methods 
+    - should use the async ones
+```js
+const fs = require('fs')
+
+fs.readdirSync('./')
+```
+
+### Events module 
+- core concepts of node based on events
+- an event indicates that something has happened in the application
+- HTTP raises and event --> send appropriate response
+```js
+// EventEmitter is a class 
+const EventEmitter = require('events');
+const emitter = new EventEmitter();
+
+// register a listener
+emitter.on('messageLogged', function(arg){
+    console.log('Listener called');
+});
+
+// raise an event
+emitter.emit('messageLogged', {id: 1, url: 'http://'});
+```
+
+- refactored using class
+```js
+// logger.js
+const EventEmitter = require('events');
+
+class Logger extends EventEmitter {
+    // don't need function keyword for methods inside class
+    log(message) {
+        //send http request
+        console.log(message);
+        this.emit('messageLogged', {id: 1, url: 'http://'});
+    }
+}
+
+module.exports = Logger;
+```
+```js
+// app.js
+const Logger = require('./logger');
+const logger = new Logger();
+
+logger.on('messageLogged', (arg) => {
+    console.log('Listener called', arg);
+});
+ 
+logger.log('message')
+```
+
+### HTTP module
+- can use to make backend servers for our clients
+- turning on server at port 3000
+    ```js
+    const http = require('http');
+
+    // has all the methods that events --> inherits from EventEmitter
+    const server = http.createServer();
+
+    server.on('connection', (socket) => {
+        console.log('New connection');
+    });
+
+    server.listen(3000);
+
+    console.log('Listening on port 3000... ');
+    ```
+- add different route functions for `/` and `/api/courses` at localhost:3000
+    - remove `server.on` section
+    ```js
+    const http = require('http');
+
+    const server = http.createServer((req, res) => {
+        if (req.url === '/') {
+            res.write('Hello World');
+            res.end();
+        }
+
+        if (req.url === '/api/courses') {
+            res.write(JSON.stringify([1,2,3]));
+            res.end();
+        }
+    });
+
+    server.listen(3000);
+
+    console.log('Listening on port 3000... ');
+    ```
